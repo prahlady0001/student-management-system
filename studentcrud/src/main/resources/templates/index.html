@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+<h2 class="mb-4">Student List</h2>
+
+<a class="btn btn-primary mb-3" th:href="@{/students/add}">Add Student</a>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}">1</td>
+        <td th:text="${student.name}">John</td>
+        <td th:text="${student.age}">22</td>
+        <td th:text="${student.course}">Java</td>
+        <td>
+            <a class="btn btn-warning btn-sm" th:href="@{'/students/edit/' + ${student.id}}">Edit</a>
+            <a class="btn btn-danger btn-sm" th:href="@{'/students/delete/' + ${student.id}}"
+               onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
